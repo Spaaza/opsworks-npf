@@ -17,6 +17,6 @@ metadata
 
 cookbook 'php', '~> 1.4.6'
 
-cookbook 'repo-helper', github: 'ctjp/opsworks-repo-helper'
-cookbook 'deploy', github: 'ctjp/opsworks-deploy'
+#cookbook 'repo-helper', github: 'ctjp/opsworks-repo-helper'
+#cookbook 'deploy', github: 'ctjp/opsworks-deploy'
 cookbook 'php-fpm', github: 'ctjp/opsworks-php-fpm'

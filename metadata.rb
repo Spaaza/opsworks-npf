@@ -19,6 +19,6 @@ version '0.1.0'
 
 depends 'php'
 
-depends 'repo-helper'
-depends 'deploy'
+#depends 'repo-helper'
+#depends 'deploy'
 depends 'php-fpm'

@@ -4,16 +4,11 @@ package 'php5-fpm' do
   action :install
 end
 
-service 'php-fpm' do
-  service_name node['php-fpm']['service_name']
-  supports :status => true, :restart => true, :reload => true
-  action [:enable, :start]
-end
-
 include_recipe 'php-fpm::default'
 
 service node['php-fpm']['service_name'] do
-  action :start
+  supports :status => true, :restart => true, :reload => true
+  action [:enable, :start]
 end
 
 node['deploy'].each do |application, deploy|

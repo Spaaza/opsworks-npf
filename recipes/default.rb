@@ -1,6 +1,16 @@
 include_recipe 'nginx'
-include_recipe 'php-fpm::service'
+
+service 'php-fpm' do
+  service_name node['php-fpm']['service_name']
+  supports :status => true, :restart => true, :reload => true
+  action :enable
+end
+
 include_recipe 'php-fpm::default'
+
+service node['php-fpm']['service_name'] do
+  action :start
+end
 
 node['deploy'].each do |application, deploy|
 
@@ -24,8 +34,4 @@ node['deploy'].each do |application, deploy|
     ssl_certificate_ca deploy[:ssl_certificate_ca]
     only_if { node['php-fpm'] && node['php-fpm']['pools'] }
   end
-end
-
-service node['php-fpm']['service_name'] do
-  action :start
 end

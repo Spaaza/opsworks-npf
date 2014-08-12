@@ -8,6 +8,8 @@ pool_conf_dir = '/etc/' + php_fpm_service_name + (!version.empty? ? '-' + versio
 default['php-fpm']['service_name'] = php_fpm_service_name
 default['php-fpm']['conf_file'] = conf_file
 default['php-fpm']['pool_conf_dir'] = pool_conf_dir
+default['php-fpm']['user'] = 'www-data'
+default['php-fpm']['group'] = 'www-data'
 
 default['php-fpm']['pools'] = [
   {

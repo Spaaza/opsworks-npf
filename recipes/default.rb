@@ -1,9 +1,13 @@
 include_recipe 'nginx'
 
+package 'php5-fpm' do
+  action :install
+end
+
 service 'php-fpm' do
   service_name node['php-fpm']['service_name']
   supports :status => true, :restart => true, :reload => true
-  action :enable
+  action [:enable, :start]
 end
 
 include_recipe 'php-fpm::default'

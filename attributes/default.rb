@@ -1,6 +1,13 @@
 default['php']['packages'] = %w{ php5 php5-fpm }
 
+version = ''
+conf_file = '/etc/' + php_fpm_service_name + (!version.empty? ? '-' + version : '') + '.conf'
+pool_conf_dir = '/etc/' + php_fpm_service_name + (!version.empty? ? '-' + version : '') + '.d'
+
 default['php-fpm']['service_name'] = 'php5-fpm'
+default['php-fpm']['conf_file'] = conf_file
+default['php-fpm']['pool_conf_dir'] = pool_conf_dir
+
 default['php-fpm']['pools'] = [
   {
     'name' => 'www',

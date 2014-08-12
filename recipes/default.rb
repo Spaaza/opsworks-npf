@@ -1,5 +1,6 @@
 include_recipe 'nginx'
-include_recipe 'php-fpm'
+include_recipe 'php-fpm::service'
+include_recipe 'php-fpm::default'
 
 node['deploy'].each do |application, deploy|
 

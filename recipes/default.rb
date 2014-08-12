@@ -1,5 +1,12 @@
 include_recipe 'nginx'
 
+template "/etc/nginx/fastcgi.conf" do
+  source "fastcgi.conf.erb"
+  mode "0644"
+  owner "root"
+  group "root"
+end
+
 template "/etc/init/php5-fpm.conf" do
   source "php5-fpm.conf.erb"
   mode "0644"

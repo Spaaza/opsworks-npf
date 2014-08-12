@@ -1,15 +1,4 @@
-# encoding: UTF-8
-
-if RUBY_VERSION =~ /1.9/
-  Encoding.default_external = Encoding::UTF_8
-  Encoding.default_internal = Encoding::UTF_8
-end
-
 include_recipe 'nginx'
-
-package 'php5-fpm' do
-  action :install
-end
 
 template "/etc/init/php5-fpm.conf" do
   source "php5-fpm.conf.erb"

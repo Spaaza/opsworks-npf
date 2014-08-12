@@ -11,6 +11,13 @@ package 'php5-fpm' do
   action :install
 end
 
+template "/etc/init/php5-fpm.conf" do
+  source "php5-fpm.conf.erb"
+  mode "0644"
+  owner "root"
+  group "root"
+end
+
 include_recipe 'php-fpm::default'
 
 service node['php-fpm']['service_name'] do

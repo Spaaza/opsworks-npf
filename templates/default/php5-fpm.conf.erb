@@ -15,4 +15,4 @@ stop on runlevel [016]
 pre-start exec /usr/lib/php5/php5-fpm-checkconf
 
 respawn
-exec /usr/sbin/php5-fpm --nodaemonize --fpm-config /etc/php5/fpm/php-fpm.conf
+exec /usr/sbin/php5-fpm --nodaemonize --fpm-config <%= node['php-fpm']['conf_file'] %>

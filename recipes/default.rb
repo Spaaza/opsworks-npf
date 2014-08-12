@@ -14,6 +14,13 @@ template "/etc/init/php5-fpm.conf" do
   group "root"
 end
 
+template "/usr/lib/php5/php5-fpm-checkconf" do
+  source "php5-fpm-checkconf.erb"
+  mode "0755"
+  owner "root"
+  group "root"
+end
+
 include_recipe 'php-fpm::default'
 
 service node['php-fpm']['service_name'] do

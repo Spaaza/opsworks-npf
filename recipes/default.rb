@@ -8,7 +8,7 @@ include_recipe 'php-fpm::default'
 
 service node['php-fpm']['service_name'] do
   supports :status => true, :restart => true, :reload => true
-  action [:enable, :start]
+  action [:enable, :restart]
 end
 
 node['deploy'].each do |application, deploy|

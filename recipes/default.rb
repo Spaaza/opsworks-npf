@@ -1,3 +1,5 @@
+# encoding: UTF-8
+
 include_recipe 'nginx'
 
 package 'php5-fpm' do

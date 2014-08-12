@@ -28,6 +28,13 @@ directory "/var/log/php-fpm" do
   action :create
 end
 
+directory "/var/run/php-fpm" do
+  owner "root"
+  group "root"
+  mode "0755"
+  action :create
+end
+
 include_recipe 'php-fpm::default'
 
 service node['php-fpm']['service_name'] do

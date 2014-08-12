@@ -8,6 +8,7 @@ include_recipe 'php-fpm::default'
 
 service node['php-fpm']['service_name'] do
   supports :status => true, :restart => true, :reload => true
+  provider Chef::Provider::Service::Upstart
   action [:enable, :restart]
 end
 

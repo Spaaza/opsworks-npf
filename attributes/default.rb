@@ -1,4 +1,4 @@
-default['php']['packages'] = %w{ php5 php5-fpm }
+default['php']['packages'] = %w{ php5 php5-fpm php5-curl }
 
 php_fpm_service_name = 'php5-fpm'
 version = ''

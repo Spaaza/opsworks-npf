@@ -32,25 +32,8 @@ default['php-fpm']['pools'] = [
       'php_value[session.save_handler]' => 'files',
       'php_value[session.save_path]' => '/var/lib/php/@versionsession'
     }
-  },
-  {
-    'name' => 'backend'
   }
 ]
 
-default['deploy']['test']['application'] = 'test'
-default['deploy']['test']['application_type'] = 'php'
-default['deploy']['test']['deploy_to'] = "/var/www/#{node['deploy']['test']['application']}"
-#default['deploy']['test']['user'] = 'www-data'
-#default['deploy']['test']['group'] = 'www-data'
-#default['deploy']['test']['domains'] = %w(test.dev.com www.test.dev.com backend.test.dev.com)
-default['deploy']['test']['domain_pools'] = { 'www.test.dev.com' => 'www', 'backend.test.dev.com' => 'backend' }
-
-#default['deploy']['test']['home'] = '/tmp/test_deploy_home'
-#default['deploy']['test']['keep_releases'] = true
-#default['deploy']['test']['environment'] =
-
-# Repo details go in opsworks custom json
-
-
+default['custom_env'] = {}
 

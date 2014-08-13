@@ -1,5 +1,10 @@
 node[:deploy].each do |application, deploy|
   
+  log("deploy_to: #{deploy[:deploy_to].inspect}") { level :info }
+  log("application: #{application.to_s}") { level :info }
+  log("app envs: #{node[:custom_env][application.to_s]}") { level :info }
+  log("path to vars: #{node[:custom_env][application.to_s][:path_to_vars]}") { level :info }
+
   template "#{deploy[:deploy_to]}/current/#{node[:custom_env][application.to_s][:path_to_vars]}/environment_variables.php" do
     source "environment_variables.php.erb"
     owner deploy[:user] 

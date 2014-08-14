@@ -63,6 +63,7 @@ node['deploy'].each do |application, deploy|
       server_aliases deploy[:domains][1, deploy[:domains].size]
     end
     ssl_certificate_ca deploy[:ssl_certificate_ca]
+    extra_envs deploy[:extra_envs]
     only_if { node['php-fpm'] && node['php-fpm']['pools'] }
   end
 end

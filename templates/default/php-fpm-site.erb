@@ -72,6 +72,10 @@ listen_first = ''
         listen_first ||= listen
         %>
         <%= listen.empty? ? '' : "fastcgi_pass #{listen};" %>
+
+        <% @params[:extra_envs].each_pair do |env_name, env_value| -%>
+          <%= fastcgi_param #{env_name} #{env_value}; %>
+        <% end -%>
       }
 
       # Prevent access to hidden files and folders

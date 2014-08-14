@@ -74,7 +74,7 @@ listen_first = ''
         <%= listen.empty? ? '' : "fastcgi_pass #{listen};" %>
 
         <% @params[:extra_envs].each_pair do |env_name, env_value| -%>
-          <%= fastcgi_param #{env_name} #{env_value}; %>
+          fastcgi_param <%= env_name %> <%= env_value %>;
         <% end -%>
       }
 

@@ -73,9 +73,9 @@ listen_first = ''
         %>
         <%= listen.empty? ? '' : "fastcgi_pass #{listen};" %>
 
-        <% @params[:extra_envs].each_pair do |env_name, env_value| -%>
-        fastcgi_param <%= env_name %> <%= env_value %>;
-        <% end -%>
+        <% node[:deploy][@application_name][:environment].each do |key, value| %>
+        fastcgi_param "<%= key %>" "<%= value.gsub("\"","\\\"") unless value.nil? %>";
+        <% end %>
       }
 
       # Prevent access to hidden files and folders
@@ -163,9 +163,9 @@ listen_first = ''
           try_files $uri =404; # This is not needed if you have cgi.fix_pathinfo = 0 in php.ini (you should!)
           <%= listen.empty? ? '' : "fastcgi_pass #{listen};" %>
 
-          <% @params[:extra_envs].each_pair do |env_name, env_value| -%>
-          fastcgi_param <%= env_name %> <%= env_value %>;
-          <% end -%>
+          <% node[:deploy][@application_name][:environment].each do |key, value| %>
+          fastcgi_param "<%= key %>" "<%= value.gsub("\"","\\\"") unless value.nil? %>";
+          <% end %>
         }
 
         # Prevent access to hidden files and folders

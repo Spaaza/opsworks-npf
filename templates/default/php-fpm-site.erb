@@ -55,8 +55,8 @@ server {
     <%
     # Get php-fpm pool listen option for the domain
     listen = ''
-    if @params[:domain_pools] && @params[:domain_pools][server_alias]
-      pool_name = @params[:domain_pools][server_alias]
+    if @params[:domain_pools] && @params[:domain_pools][@params[:server_name]]
+      pool_name = @params[:domain_pools][@params[:server_name]]
       @params[:php_fpm_pools].each do |pool|
         if pool[:name] == pool_name
           if pool[:listen]

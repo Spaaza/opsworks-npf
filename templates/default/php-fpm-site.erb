@@ -50,7 +50,7 @@ server {
   }
 
   location ~ \.php$ {
-    include fastcgi.conf;
+    include fastcgi_params;
     try_files $uri =404; # This is not needed if you have cgi.fix_pathinfo = 0 in php.ini (you should!)
     <%
     # Get php-fpm pool listen option for the domain
@@ -102,7 +102,7 @@ server {
     #auth_basic_user_file <%= @params[:docroot] %>.htpasswd;
     allow 127.0.0.1;
     deny all;
-    include fastcgi.conf;
+    include fastcgi_params;
     <%= listen.empty? ? '' : "fastcgi_pass #{listen};" %>
   }
 }
@@ -168,7 +168,7 @@ server {
     }
 
     location ~ \.php$ {
-      include fastcgi.conf;
+      include fastcgi_params;
       try_files $uri =404; # This is not needed if you have cgi.fix_pathinfo = 0 in php.ini (you should!)
       <%= listen.empty? ? '' : "fastcgi_pass #{listen};" %>
 
@@ -198,7 +198,7 @@ server {
       #auth_basic_user_file <%= @params[:docroot] %>.htpasswd;
       allow 127.0.0.1;
       deny all;
-      include fastcgi.conf;
+      include fastcgi_params;
       <%= listen.empty? ? '' : "fastcgi_pass #{listen};" %>
     }
   }

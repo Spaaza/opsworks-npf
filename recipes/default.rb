@@ -1,7 +1,7 @@
 include_recipe 'nginx'
 
-template "/etc/nginx/fastcgi.conf" do
-  source "fastcgi.conf.erb"
+template "/etc/nginx/fastcgi_params" do
+  source "fastcgi_params.erb"
   mode "0644"
   owner "root"
   group "root"

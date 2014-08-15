@@ -35,6 +35,13 @@ directory "/var/run/php-fpm" do
   action :create
 end
 
+directory node['php-fpm']['session_directory'] do
+  owner "www-data"
+  group "www-data"
+  mode "0755"
+  action :create
+end
+
 include_recipe 'php-fpm::default'
 
 service node['php-fpm']['service_name'] do

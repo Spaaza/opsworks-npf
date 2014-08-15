@@ -16,6 +16,9 @@ default['php-fpm']['user'] = 'www-data'
 default['php-fpm']['group'] = 'www-data'
 default['php-fpm']['pid'] = '/var/run/php-fpm' + (version.empty? ? '' : '/' + version) + '/php-fpm.pid'
 
+# Added by jbrook
+default['php-fpm']['session_directory'] = '/var/lib/php5/@versionsession'
+
 default['php-fpm']['pools'] = [
   {
     'name' => 'www',
@@ -33,7 +36,7 @@ default['php-fpm']['pools'] = [
       'php_admin_value[error_log]' => '/var/log/php-fpm/@version@poolerror.log',
       'php_admin_flag[log_errors]' => 'on',
       'php_value[session.save_handler]' => 'files',
-      'php_value[session.save_path]' => '/var/lib/php/@versionsession'
+      'php_value[session.save_path]' => node['php-fpm']['session_directory']
     }
   }
 ]

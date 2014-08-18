@@ -18,4 +18,11 @@ node['deploy'].each do |application, deploy|
     deploy_data deploy
   end
 
+  # Make sure that the group can write and read the logs
+  directory "#{deploy[:deploy_to]}/shared/log" do
+    owner deploy[:user]
+    group deploy[:group]
+    mode "0664" 
+  end
+
 end

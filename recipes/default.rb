@@ -1,4 +1,5 @@
 include_recipe 'nginx'
+include_recipe 'php-fpm::default'
 
 template "/etc/nginx/fastcgi_params" do
   source "fastcgi_params.erb"
@@ -41,8 +42,6 @@ directory node['php-fpm']['session_directory'] do
   mode "0755"
   action :create
 end
-
-include_recipe 'php-fpm::default'
 
 service node['php-fpm']['service_name'] do
   provider Chef::Provider::Service::Upstart

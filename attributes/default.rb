@@ -19,7 +19,28 @@ default['php-fpm']['pid'] = '/var/run/php-fpm' + (version.empty? ? '' : '/' + ve
 # Added by jbrook
 default['php-fpm']['session_directory'] = '/var/lib/php5/@versionsession'
 
-default['php-fpm']['pools'] = [
+override['php-fpm']['pool_defaults'] = {
+  'process_manager' => 'dynamic',
+  'max_children' => 50,
+  'start_servers' => 5,
+  'min_spare_servers' => 5,
+  'max_spare_servers' => 35,
+  'max_requests' => 500,
+  'catch_workers_output' => 'no',
+  'security_limit_extensions' => '.php',
+  'slowlog' => '/var/log/php-fpm/slow.log',
+  'php_options' => {
+    'php_admin_value[memory_limit]' => '128M',
+    'php_admin_value[error_log]' => '/var/log/php-fpm/@version@poolerror.log',
+    'php_admin_flag[log_errors]' => 'on',
+    'php_value[session.save_handler]' => 'files',
+    'php_value[session.save_path]' => '/var/lib/php/@versionsession',
+    'pm.status_path' => '/php_fpm_status',
+    'ping.path' => '/php_fpm_ping'
+  }
+}
+
+override['php-fpm']['pools'] = [
   {
     'name' => 'www',
     'process_manager' => 'dynamic',

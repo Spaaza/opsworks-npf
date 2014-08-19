@@ -22,7 +22,7 @@ node['deploy'].each do |application, deploy|
   directory "#{deploy[:deploy_to]}/shared/log" do
     owner deploy[:user]
     group deploy[:group]
-    mode "0664" 
+    mode "0775" 
   end
 
 end

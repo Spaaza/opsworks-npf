@@ -36,7 +36,7 @@ default['php-fpm']['pools'] = [
       'php_admin_value[error_log]' => '/var/log/php-fpm/@version@poolerror.log',
       'php_admin_flag[log_errors]' => 'on',
       'php_value[session.save_handler]' => 'files',
-      'php_value[session.save_path]' => node['php-fpm']['session_directory']
+      'php_value[session.save_path]' => node['php-fpm']['session_directory'],
       'pm.status_path' => '/php_fpm_status',
       'ping.path' => '/php_fpm_ping'
     }

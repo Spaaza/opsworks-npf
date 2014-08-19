@@ -28,8 +28,6 @@ default['php-fpm']['pools'] = [
     'min_spare_servers' => 5,
     'max_spare_servers' => 35,
     'max_requests' => 500,
-    'pm.status_path' => '/php_fpm_status',
-    'ping.path' => '/php_fpm_ping',
     'catch_workers_output' => 'no',
     'security_limit_extensions' => '.php',
     'slowlog' => '/var/log/php-fpm/slow.log',
@@ -39,6 +37,8 @@ default['php-fpm']['pools'] = [
       'php_admin_flag[log_errors]' => 'on',
       'php_value[session.save_handler]' => 'files',
       'php_value[session.save_path]' => node['php-fpm']['session_directory']
+      'pm.status_path' => '/php_fpm_status',
+      'ping.path' => '/php_fpm_ping'
     }
   }
 ]

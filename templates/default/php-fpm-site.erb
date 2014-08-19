@@ -97,7 +97,7 @@ server {
     deny all;
   }
 
-  location /php_fpm_status {
+  location ~ ^/(php_fpm_status|php_fpm_ping)$ {
     #auth_basic "Restricted";
     #auth_basic_user_file <%= @params[:docroot] %>.htpasswd;
     allow 127.0.0.1;

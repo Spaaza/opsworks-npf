@@ -25,4 +25,11 @@ node['deploy'].each do |application, deploy|
     mode "0775" 
   end
 
+  # Make sure that the group can write and read the cache
+  directory "#{deploy[:deploy_to]}/shared/cache" do
+    owner deploy[:user]
+    group deploy[:group]
+    mode "0775" 
+  end
+
 end

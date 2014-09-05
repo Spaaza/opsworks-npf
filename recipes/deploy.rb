@@ -18,14 +18,26 @@ node['deploy'].each do |application, deploy|
     deploy_data deploy
   end
 
-  # Make sure that the group can write and read the logs
+  # Create the top level log dir if it doesn't exist
   directory "#{deploy[:deploy_to]}/shared/log" do
-    owner deploy[:user]
-    group deploy[:group]
+    owner 'www-data'
+    group 'www-data'
     mode "0775" 
   end
+  
+  # Create the top level cache dir if it doesn't exist
+  directory "#{deploy[:deploy_to]}/shared/cache" do
+    owner 'www-data'
+    group 'www-data'
+    mode "0775" 
+  end
+  
+  # Make sure that the app can write and read the log dir and it's sub directories
+  execute "change owner of log dir" do
+    command "chown -Rf www-data:www-data #{deploy[:deploy_to]}/shared/log"
+  end
 
-  # Make sure that the group can write and read the cache
+  # Make sure that the app can write and read the cache dir and it's sub directories
   execute "change owner of cache dir" do
     command "chown -Rf www-data:www-data #{deploy[:deploy_to]}/shared/cache"
   end

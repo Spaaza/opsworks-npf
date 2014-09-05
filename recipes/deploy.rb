@@ -26,10 +26,8 @@ node['deploy'].each do |application, deploy|
   end
 
   # Make sure that the group can write and read the cache
-  directory "#{deploy[:deploy_to]}/shared/cache" do
-    owner 'www-data'
-    group 'www-data'
-    mode "0775" 
+  execute "change owner of cache dir" do
+    command "chown -Rf www-data:www-data #{deploy[:deploy_to]}/shared/cache"
   end
 
 end

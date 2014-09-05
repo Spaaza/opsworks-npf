@@ -75,6 +75,7 @@ server {
     listen_first ||= listen
     %>
     <%= listen.empty? ? '' : "fastcgi_pass #{listen};" %>
+    fastcgi_param "HTTP_HOST" "<%= @application[:domains].first %>";
 
     <% node[:deploy][@application_name][:environment].each do |key, value| %>
     fastcgi_param "<%= key %>" "<%= value.gsub("\"","\\\"") unless value.nil? %>";

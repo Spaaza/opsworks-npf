@@ -100,8 +100,7 @@ server {
   location ~ ^/(php_fpm_status|php_fpm_ping)$ {
     #auth_basic "Restricted";
     #auth_basic_user_file <%= @params[:docroot] %>.htpasswd;
-    allow 127.0.0.1;
-    deny all;
+    allow all;
     include fastcgi_params;
     <%= listen.empty? ? '' : "fastcgi_pass #{listen};" %>
   }
